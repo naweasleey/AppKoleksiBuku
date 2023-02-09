@@ -1,0 +1,109 @@
+﻿@page "/"
+@using AppKoleksiBuku.Models
+
+<PageTitle>Index</PageTitle>
+
+<style>
+     #delete{
+        background-color : red;
+        width : 70px;
+        height : 40px;
+    }
+    .card-body > button{
+        height : 50px;
+        width : 200px;
+    }
+</style>
+
+<h1>Tambah Koleksi Buku </h1>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <button onclick="@AddActionOnePiece"class="btn btn-primary">Action - One Piece</button>
+                <button onclick="@AddActionBlackClover"class="btn btn-primary">Action - Black Clover</button>
+                <button onclick="@AddActionJujutsuKaisen"class="btn btn-primary">Action - Jujutsu Kaisen</button><br /><br />
+                <button onclick="@AddNovelAndreaHirata"class="btn btn-success">Novel - Andrea Hirata</button>
+                <button onclick="@AddNovelJKRowling" class="btn btn-success">Novel - J. K. Rowling</button>
+                <button onclick="@AddNovelTereLiye" class="btn btn-success">Novel - Tere Liye</button><br /><br />
+                <button onclick="@AddSejarahIndonesia" class="btn btn-warning">Sejarah - Indonesia</button>
+                <button onclick="@AddSejarahYunani" class="btn btn-warning">Sejarah - Yunani</button>
+                <button onclick="@AddSejarahJepang" class="btn btn-warning">Sejarah - Jepang</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h1>Koleksi Buku Tobi</h1>
+                <table class="table table-bordered table-" cellpadding="7">
+                    <tr>
+                        <th>Genre - Judul Buku</th>
+                        <th>Aksi</th>
+                    </tr>
+                    @foreach (var buku in listbuku)
+                    {
+                        <tr>
+                            <td>@buku.Buku</td>
+                            <td>
+                                <button @onclick="() => Delete(buku)" type="button" class="btn btn-danger btn-sm" id="delete">Hapus</button>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@code{
+    List<KoleksiBuku> listbuku;
+
+    protected override void OnInitialized()
+    {
+        listbuku = new List<KoleksiBuku>();
+    }
+
+    public void AddActionOnePiece()
+    {
+        listbuku.Add(new KoleksiBuku(Buku.ActionOnePiece));
+    }
+    public void AddActionBlackClover()
+    {
+        listbuku.Add(new KoleksiBuku(Buku.ActionBlackClover));
+    }
+    public void AddActionJujutsuKaisen()
+    {
+        listbuku.Add(new KoleksiBuku(Buku.ActionJujutsuKaisen));
+    }
+    public void AddNovelAndreaHirata()
+    {
+        listbuku.Add(new KoleksiBuku(Buku.NovelAndreaHirata));
+    }
+    public void AddNovelJKRowling()
+    {
+        listbuku.Add(new KoleksiBuku(Buku.NovelJKRowling));
+    }
+    public void AddNovelTereLiye()
+    {
+        listbuku.Add(new KoleksiBuku(Buku.NovelTereLiye));
+    }
+    public void AddSejarahIndonesia()
+    {
+        listbuku.Add(new KoleksiBuku(Buku.SejarahIndonesia));
+    }
+    public void AddSejarahYunani()
+    {
+        listbuku.Add(new KoleksiBuku(Buku.SejarahYunani));
+    }
+    public void AddSejarahJepang()
+    {
+        listbuku.Add(new KoleksiBuku(Buku.SejarahJepang));
+    }
+    public void Delete(KoleksiBuku buku)
+    {
+        listbuku.Remove(buku);
+    }
+
+}
